@@ -2,7 +2,7 @@ input = [3, 5, 7, 9, 10, 90, 100, 130, 140, 160, 170]
 
 target = 9
 
-
+# this won't work in a question where value is not there in the array
 def binary_search(nums: list[int], target: int):
 
     left, right = 0, len(nums) - 1
