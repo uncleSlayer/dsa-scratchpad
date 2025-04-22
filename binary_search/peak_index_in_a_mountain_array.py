@@ -33,33 +33,26 @@ def peakIndexInMountainArray(arr):
 
 """
 This is the optimized solution.
+
+Point is if next element to mid is greater than mid, that means peak is on the right side.
+Otherwise the peak can either be mid itself because we don't know if the previous element to mid is greater than mid or not. So we do right = mid whereas left = mid + 1
+
+Why will left == right in the end?
+Because in the first place in the while loop we are not checking if left == right. so at one point they will become same. That is the peak.
 """
 
 
-def optimizedPeakIndexInMountainArray(arr):
-
-    """
-    Let's say arr[mid] > arr[mid - 1]
-    """
-
+def peakIndexInMountainArray(arr: list[int]) -> int:
     left, right = 0, len(arr) - 1
-    
-    ans = 0
 
     while left < right:
-
         mid = (left + right) // 2
-
-        if arr[mid] > arr[mid - 1]:
-            if arr[mid] > arr[ans]:
-                ans = mid
+        if arr[mid] < arr[mid + 1]:
             left = mid + 1
         else:
-            if arr[mid] > arr[ans]:
-                ans = mid
             right = mid
 
-    return ans
+    return left  # or right — same at this point
 
 
-print(optimizedPeakIndexInMountainArray(arr))
+print(peakIndexInMountainArray(arr))
