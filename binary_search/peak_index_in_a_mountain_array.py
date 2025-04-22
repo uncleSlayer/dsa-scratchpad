@@ -39,7 +39,7 @@ This is the optimized solution.
 def optimizedPeakIndexInMountainArray(arr):
 
     """
-    In this code assume that your mid is peak and think about both if and the elif cases and you will understand why right = mid and left = mid + 1 we did 
+    Let's say arr[mid] > arr[mid - 1]
     """
 
     left, right = 0, len(arr) - 1
@@ -50,11 +50,13 @@ def optimizedPeakIndexInMountainArray(arr):
 
         mid = (left + right) // 2
 
-        if arr[mid] < arr[mid + 1]:
-            ans = max(ans, arr[mid])
+        if arr[mid] > arr[mid - 1]:
+            if arr[mid] > arr[ans]:
+                ans = mid
             left = mid + 1
-        elif arr[mid] > arr[mid + 1]:
-            ans = max(ans, arr[mid])
+        else:
+            if arr[mid] > arr[ans]:
+                ans = mid
             right = mid
 
     return ans
